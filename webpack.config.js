@@ -6,7 +6,8 @@ const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 module.exports = {
     devtool: '#source-map',
     entry: {
-        main: './app/index.js'
+        'EaselJS-baseUse': './app/EaselJS-baseUse/index.js',
+        'EaselJS-Bitmap': './app/EaselJS-Bitmap/index.js',
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -87,9 +88,14 @@ module.exports = {
             allChunks: false
         }),
         new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: './app/index.html',
-            chunks: ['main']
+            filename: 'EaselJS-baseUse.html',
+            template: './app/EaselJS-baseUse/index.html',
+            chunks: ['EaselJS-baseUse']
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'EaselJS-Bitmap.html',
+            template: './app/EaselJS-Bitmap/index.html',
+            chunks: ['EaselJS-Bitmap']
         }),
         // new webpack.DllReferencePlugin({
         //     manifest: require('./dll_modules/dll-manifest.json')
@@ -104,7 +110,7 @@ module.exports = {
         // }])
     ],
     devServer: {
-        host: "localhost",
+        host: "192.168.0.12",
         contentBase: [path.join(__dirname, 'app')],
         headers: {
             "X-Custom-Foo": "bar"
