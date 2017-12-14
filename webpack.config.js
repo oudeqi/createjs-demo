@@ -15,9 +15,9 @@ module.exports = {
         pathinfo: true
     },
     resolve: {
-	    // alias: {
-	    // 	easeljs: path.join(__dirname) + '/vendor/easeljs/easeljs-0.8.2.combined.js'
-	    // }
+	    alias: {
+	    	createjs: 'createjs/builds/1.0.0/createjs.js'
+	    }
 	},
     module: {
         rules: [{
@@ -28,8 +28,8 @@ module.exports = {
                 }
             },
             {
-                // test: require.resolve('./vendor/createjs.js'),
-                test: /vendor/,
+                // test: /vendor/,
+                test: require.resolve('createjs/builds/1.0.0/createjs.js'),
                 loader: "imports-loader?this=>window"
             },
             {
@@ -42,7 +42,8 @@ module.exports = {
                         options: {
                             modules: false
                         }
-                    },{
+                    },
+                    {
                         loader: "postcss-loader",
                         options: {
                             config: {
@@ -54,7 +55,8 @@ module.exports = {
                         }
                     }]
                 })
-            },{
+            },
+            {
                 test: /\.(png|jpe?g|gif|svg)(\?\S*)?$/,
                 use: [{
                     loader: 'url-loader',
@@ -63,7 +65,8 @@ module.exports = {
                         limit: 1
                     }
                 }]
-            },{
+            },
+            {
                 test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
                 loader: 'file-loader',
                 options: {
