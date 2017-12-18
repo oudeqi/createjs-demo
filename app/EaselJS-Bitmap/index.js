@@ -139,6 +139,8 @@ setup3();
 // 注意Filter需要在cache方法处理后的才可以执行，
 // 一旦图形变化了，需要再次调用cache，或者使用updateCache方法
 
+
+
 // EaselJS包含了一些内置的滤镜方法，如下：
 // AlphaMapFilter : 将一个灰度图形映射到一个图形的阿尔法通道
 // AlphaMaskFilter: 将一个图片的阿尔法通道映射到一个显示图形的阿尔法通道

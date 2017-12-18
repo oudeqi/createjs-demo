@@ -8,6 +8,7 @@ module.exports = {
     entry: {
         'EaselJS-baseUse': './app/EaselJS-baseUse/index.js',
         'EaselJS-Bitmap': './app/EaselJS-Bitmap/index.js',
+        'mouse-control': './app/mouse-control/index.js',
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -97,6 +98,11 @@ module.exports = {
             template: './app/EaselJS-Bitmap/index.html',
             chunks: ['EaselJS-Bitmap']
         }),
+        new HtmlWebpackPlugin({
+            filename: 'mouse-control.html',
+            template: './app/mouse-control/index.html',
+            chunks: ['mouse-control']
+        }),
         // new webpack.DllReferencePlugin({
         //     manifest: require('./dll_modules/dll-manifest.json')
         // }),
@@ -110,7 +116,8 @@ module.exports = {
         // }])
     ],
     devServer: {
-        host: "192.168.0.12",
+        // host: "192.168.0.12",
+        host: "localhost",
         contentBase: [path.join(__dirname, 'app')],
         headers: {
             "X-Custom-Foo": "bar"
