@@ -9,6 +9,10 @@ module.exports = {
         'EaselJS-baseUse': './app/EaselJS-baseUse/index.js',
         'EaselJS-Bitmap': './app/EaselJS-Bitmap/index.js',
         'mouse-control': './app/mouse-control/index.js',
+        'PreloadJS': './app/PreloadJS/index.js',
+        'TweenJS': './app/TweenJS/index.js',
+        'move-and-jump': './app/move-and-jump/index.js',
+        'move-and-jump': './app/move-and-jump/index.js',
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -102,6 +106,26 @@ module.exports = {
             filename: 'mouse-control.html',
             template: './app/mouse-control/index.html',
             chunks: ['mouse-control']
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'PreloadJS.html',
+            template: './app/PreloadJS/index.html',
+            chunks: ['PreloadJS']
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'TweenJS.html',
+            template: './app/TweenJS/index.html',
+            chunks: ['TweenJS']
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'SoundJS.html',
+            template: './app/SoundJS/index.html',
+            chunks: ['SoundJS']
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'move-and-jump.html',
+            template: './app/move-and-jump/index.html',
+            chunks: ['move-and-jump']
         }),
         // new webpack.DllReferencePlugin({
         //     manifest: require('./dll_modules/dll-manifest.json')

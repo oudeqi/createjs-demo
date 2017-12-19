@@ -14,24 +14,41 @@ var characterWidth = 75;
 var characterHeight = 96;
 var spritesheet; 
 var charactor;
+var shape;
 
-spritesheet = new createjs.SpriteSheet({
-    'images': ['http://cdn.gbtags.com/gblibraryassets/libid108/charactor.png'],
-    'frames': {"height": 96, "count": 10, "width": 75}
-});
-  
-charactor  = new createjs.Sprite(spritesheet);
-charactor.x = (stageWidth - characterWidth)/2;
-charactor.y = (stageHeight - characterHeight)/2;
+window.onload = function(){
+	shape = new createjs.Shape();
+	shape.graphics.setStrokeStyle(10).beginStroke("#9fa56e");
+	stage.addChild(shape);
 
-stage.addChild(charactor);
+	spritesheet = new createjs.SpriteSheet({
+	    'images': [require('./charactor.png')],
+	    'frames': {"height": 96, "count": 10, "width": 75}
+	});
+	  
+	charactor  = new createjs.Sprite(spritesheet);
+	charactor.x = (stageWidth - characterWidth)/2;
+	charactor.y = (stageHeight - characterHeight)/2;
 
-charactor.play()
-
-// createjs.Ticker.setFPS(35);
-
-createjs.Ticker.addEventListener("tick", tick);
+	stage.addChild(charactor);
+	charactor.play()
+	createjs.Ticker.setFPS(35);
+	createjs.Ticker.addEventListener("tick", tick);
+}
 
 function tick(){
+	shape.graphics.lineTo(stage.mouseX, stage.mouseY);
+	// charactor.x = stage.mouseX - characterWidth/2;
+ //    charactor.y = stage.mouseY - characterHeight/2;
+    //这里使用递增效果来动画设置人物的移动坐标，大家可以修改参数改变移动速度
+    charactor.x += (stage.mouseX - charactor.x - characterWidth/2)*0.05;
+    charactor.y += (stage.mouseY - charactor.y - characterHeight/2)*0.05;
+// 使用Sprite的相关方法play和gotoAndStop可以控制游戏人物的动画效果播放或者暂停
+    if((Math.abs(charactor.x - (stage.mouseX - characterWidth/2))<1)
+        && (Math.abs(charactor.y - (stage.mouseY - characterHeight/2))<1)){
+		charactor.gotoAndStop(0);
+    }else{
+      charactor.play();
+    }
 	stage.update();
 }
